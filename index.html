@@ -78,6 +78,12 @@ button .ic{font-size:.95rem;line-height:1}
 .note h2{font-size:.83rem;margin:0 0 8px;font-weight:700;letter-spacing:.02em;color:var(--acc)}
 .note ul{margin:0;padding-left:1.05rem;line-height:1.75;font-size:.82rem;color:var(--fg)}
 .note li b{font-weight:700}
+.cap{position:absolute;left:12px;right:12px;top:11px;z-index:3;pointer-events:none;display:none;
+  font-size:.92rem;font-weight:700;color:#fff;background:rgba(12,30,28,.62);padding:8px 12px;border-radius:12px;backdrop-filter:blur(8px);line-height:1.4}
+.cap small{display:block;font-weight:600;opacity:.8;font-size:.72rem}
+.democtl{display:none;gap:8px;flex-wrap:wrap;align-items:center;margin:10px 0 0}
+.democtl.show{display:flex}
+.democtl .sp{margin-left:auto;display:flex;gap:6px}
 @media (max-width:520px){
   h1{font-size:.95rem}
   button{font-size:.78rem;padding:8px 10px}
@@ -97,7 +103,20 @@ button .ic{font-size:.95rem;line-height:1}
 
   <div class="stage">
     <div id="c"></div>
+    <div class="cap" id="cap"></div>
     <div class="hint">இழுத்து சுழற்றவும் · இரு விரல் ஜூம்</div>
+  </div>
+
+  <div class="democtl" id="democtl">
+    <button id="dPrev"><span class="ic">⏮</span><span class="tx">முந்தையது</span></button>
+    <button id="dPause"><span class="ic">⏸</span><span class="tx">நிறுத்து</span></button>
+    <button id="dNext"><span class="ic">⏭</span><span class="tx">அடுத்தது</span></button>
+    <select id="dList" aria-label="படி தேர்வு" style="font:inherit;font-size:.78rem;padding:8px;border-radius:11px;border:1px solid var(--line);background:var(--card);color:var(--fg);max-width:100%"></select>
+    <span class="sp">
+      <button id="dS1" data-k="3.2">மிக மெதுவாக</button>
+      <button id="dS2" data-k="2.2" class="on">மெதுவாக</button>
+      <button id="dS3" data-k="1">வேகமாக</button>
+    </span>
   </div>
 
   <div class="bar">
@@ -130,6 +149,31 @@ button .ic{font-size:.95rem;line-height:1}
   <div id="st" class="status" role="status">
     <span class="si">ℹ️</span><span class="sx"></span>
   </div>
+
+
+  <section class="note" id="plan">
+    <h2>திட்டம் – மின் கணக்கு (மதிப்பீடு; உங்கள் கருவிகளின் உண்மை watt-ஐ மாற்றவும்)</h2>
+    <div id="loads" style="font-size:.8rem"></div>
+    <p id="loadRes" style="font-size:.82rem;line-height:1.7;margin:10px 0 0"></p>
+  </section>
+
+  <section class="note">
+    <h2>செலவுப் பட்டியல் (BOM) – விலைகளை உங்கள் விலைப்புள்ளியால் நிரப்பவும்</h2>
+    <div id="bom" style="font-size:.8rem"></div>
+    <p id="bomRes" style="font-size:.85rem;font-weight:700;margin:10px 0 0"></p>
+  </section>
+
+  <section class="note">
+    <h2>நடைமுறைச் சரிபார்ப்புகள்</h2>
+    <ul>
+      <li><b>அனுமதி:</b> வாகன அமைப்பை மாற்றுவதற்கு (கூரை ஹேட்ச், பக்கக் கதவு, உள்ளமைப்பு) RTO-வில் மாற்றம் பதிவு/அனுமதி தேவைப்படலாம். வேலை தொடங்கும் முன் உங்கள் மாவட்ட RTO-வில் விதிகளைக் கேட்டுக்கொள்ளுங்கள்.</li>
+      <li><b>எடை:</b> RC-யில் உள்ள அனுமதிக்கப்பட்ட மொத்த எடைக்குள், மர வேலை, பேட்டரி, PC, TV, 3D பிரிண்டர் எல்லாம் சேர்த்து இருக்க வேண்டும்; பேட்டரியைக் கீழே, நடுவில் வைக்கவும்.</li>
+      <li><b>கூரை:</b> camera mast, hatch, solar பேனல் கூரையில் வைக்கும் முன் வலுவூட்டல் மற்றும் நீர்க்கசிவுத் தடுப்பு (sealing) தேவை; இயக்கத்தில் mast மடங்கி பூட்டப்பட வேண்டும்.</li>
+      <li><b>காற்றோட்டம்:</b> PC, UPS, inverter-க்குத் தனி காற்றோட்டம்; பேட்டரிக்குப் பாதுகாப்பான fuse/breaker மற்றும் தரை (earthing).</li>
+      <li><b>மின்சாரம்:</b> வேலை செய்யும் இடத்தில் shore power இணைப்பு + inverter; எளிய மின் வேலையை உரிமம் பெற்ற மின் பணியாளர் செய்ய வேண்டும்.</li>
+      <li><b>வரைபடம்:</b> தயாரிப்பாளருக்குக் கொடுக்க இந்த 3D மாடலில் இருந்து அளவுகளுடன் கூடிய மேல்/பக்க/பின் வரைபடம் தனியாகத் தயாரிக்க வேண்டும் (இந்தப் பதிப்பில் சேர்க்கப்படவில்லை).</li>
+    </ul>
+  </section>
 
   <section class="note">
     <h2>DEMO — Cinematic</h2>
@@ -838,7 +882,7 @@ function st(){
   var a = [];
   if (ev.phase === 1) a.push('🚐 வேன் நிகழ்வு இடத்தை நோக்கி வருகிறது...');
   else if (ev.phase === 2){
-    a.push('🎥 CINEMATIC (' + ev.stepIdx + '/' + deploySteps.length + ')');
+    a.push('🎥 படி ' + ev.stepIdx + '/' + deploySteps.length);
     if (currentDemoStep) a.push(currentDemoStep);
   }
   else if (ev.phase === 3) a.push('🎬 LIVE — 360° + crowd cheer + camera flash');
@@ -859,6 +903,14 @@ function st(){
   if (G.lights) a.push('💡 விளக்குகள்');
   if (G.hatch) a.push('🛰️ ஹேட்ச்');
   stEl.textContent = a.join('  ');
+  var capEl = document.getElementById('cap'), ctl = document.getElementById('democtl');
+  if (capEl){
+    if (ev.phase === 2 && currentDemoStep){
+      capEl.style.display = 'block';
+      capEl.innerHTML = currentDemoStep + '<small>படி ' + ev.stepIdx + ' / ' + deploySteps.length + ' · ' + (window.DESC ? DESC[ev.stepIdx-1] || '' : '') + '</small>';
+    } else capEl.style.display = 'none';
+    if (ctl) ctl.classList.toggle('show', ev.phase === 1 || ev.phase === 2);
+  }
 }
 
 function tog(id, onLbl, offLbl, fn){
@@ -937,6 +989,7 @@ function resetAll(){
 var ev = {phase: 0, t: 0, stepIdx: 0};
 var currentDemoStep = '';
 var cheerLevel = 0;
+var demoSlow = 2.2, demoPaused = false;
 
 var deploySteps = [
   {t: 0.0,  name:'👁️ உள்புறம் (முதலில்)',  run: function(){ if(!U.bCut.s)U.bCut.set(true); focusOn('bCut',1.6); }},
@@ -1078,6 +1131,46 @@ document.getElementById('bEvent').addEventListener('click', function(){
   st();
 });
 
+window.DESC = ['சுவர்கள் ஒளிஊடுருவும்; உள் அமைப்பு முழுதும் தெரியும்','மேல் கபோர்டில் ஸ்பீக்கர்/ஆடியோ கருவிகள்','மானிட்டர் கதவு திறந்து எடிட்டிங் திரை வருகிறது','CPU மற்றும் UPS டிராயர் வெளியே வருகிறது','சோபா விரிந்து படுக்கையாகிறது','மீண்டும் சோபா நிலை','டேபிள் சுழன்று விரிகிறது','டேபிள் மூடுகிறது','பக்கக் கதவு திறந்து பொதுமக்களுக்கு TV','கூரை ஹேட்ச் திறக்கிறது','கேமரா மேலே உயர்ந்து 360° சுழல்கிறது','கண்காணிப்பு நிறுத்தம்','ஹேட்ச் மூடுகிறது','Dubbing மைக் இறங்குகிறது','மைக் தனியாகக் கழற்றப்படுகிறது','மைக் மீண்டும் பொருத்தம்','Dubbing பகுதி மூடுகிறது','பின்புற அறை விரிகிறது','சமையல் + 3D/T-shirt 2-in-1 மாட்யூல்','ஸ்டுடியோ விளக்குகள் ஒளிர்கின்றன','சமையல் பகுதி திறப்பு','3D பிரிண்டர் / T-shirt பகுதி திறப்பு','வெளிப்புறத் தோற்றம்','மேலிருந்து முழு அமைப்பு','சாதாரண பார்வை','LIVE-க்கு ஹேட்ச் திறப்பு','LIVE 360° ஒளிபரப்பு தொடக்கம்'];
+function demoJump(i){
+  if (ev.phase !== 2) return;
+  i = Math.max(0, Math.min(deploySteps.length - 1, i));
+  resetAll();
+  for (var j = 0; j <= i; j++){ try{ deploySteps[j].run(); }catch(e){} }
+  currentDemoStep = deploySteps[i].name;
+  ev.stepIdx = i + 1;
+  ev.t = deploySteps[i].t + 0.001;
+  var dl = document.getElementById('dList'); if (dl) dl.value = i;
+  st();
+}
+(function(){
+  var dl = document.getElementById('dList');
+  deploySteps.forEach(function(d, i){ var o = document.createElement('option'); o.value = i; o.textContent = (i+1) + '. ' + d.name; dl.appendChild(o); });
+  dl.addEventListener('change', function(){ demoJump(parseInt(dl.value, 10)); });
+})();
+document.getElementById('dNext').addEventListener('click', function(){ demoJump(ev.stepIdx); });
+document.getElementById('dPrev').addEventListener('click', function(){ demoJump(ev.stepIdx - 2); });
+document.getElementById('dPause').addEventListener('click', function(){
+  demoPaused = !demoPaused;
+  this.querySelector('.ic').textContent = demoPaused ? '▶' : '⏸';
+  this.querySelector('.tx').textContent = demoPaused ? 'தொடர்' : 'நிறுத்து';
+  this.classList.toggle('on', demoPaused);
+});
+['dS1','dS2','dS3'].forEach(function(id){
+  var b = document.getElementById(id);
+  b.addEventListener('click', function(){
+    demoSlow = parseFloat(b.getAttribute('data-k'));
+    ['dS1','dS2','dS3'].forEach(function(o){ document.getElementById(o).classList.toggle('on', o === id); });
+  });
+});
+function resetDemoCtl(){
+  demoPaused = false;
+  var pb = document.getElementById('dPause');
+  pb.querySelector('.ic').textContent = '⏸'; pb.querySelector('.tx').textContent = 'நிறுத்து'; pb.classList.remove('on');
+}
+document.getElementById('bEvent').addEventListener('click', resetDemoCtl);
+document.getElementById('bTravel').addEventListener('click', resetDemoCtl);
+
 var clock = new T.Clock();
 
 function loop(){
@@ -1096,7 +1189,7 @@ function loop(){
       st();
     }
   } else if (ev.phase === 2){
-    ev.t += dt;
+    if (!demoPaused) ev.t += dt / demoSlow;
     while (ev.stepIdx < deploySteps.length && ev.t >= deploySteps[ev.stepIdx].t){
       var step = deploySteps[ev.stepIdx];
       try{ step.run(); }catch(e){}
@@ -1154,14 +1247,14 @@ function loop(){
     tab: (G.tab && S.bed < 0.02) ? 1 : 0
   };
   for (var k in g){
-    S[k] += (g[k] - S[k]) * 0.10;
+    S[k] += (g[k] - S[k]) * (1 - Math.pow(1 - (ev.phase === 2 ? 0.10 / demoSlow : 0.10), dt * 60));
     if (Math.abs(g[k] - S[k]) < 0.002) S[k] = g[k];
   }
 
   camSpin += 0.035 * S.surv;
 
   if (cine.active){
-    cine.hold -= dt;
+    if (!(ev.phase === 2 && demoPaused)) cine.hold -= (ev.phase === 2 ? dt / demoSlow : dt);
     if (cine.hold <= 0) cine.active = false;
   }
 
@@ -1173,7 +1266,7 @@ function loop(){
   if (ev.phase === 3 && !cine.active && !spin && !ptr.size) useYaw += Math.sin(tNow * 0.3) * 0.35 + 0.15;
   if (spin && !ptr.size) useYaw += 0.006;
 
-  var lerpK = 0.10;
+  var lerpK = 1 - Math.pow(1 - ((ev.phase === 2) ? 0.10 / Math.max(1, demoSlow * 0.75) : 0.10), dt * 60);
   cTgt.lerp(useTarget, lerpK);
   cYaw   += (useYaw   - cYaw)   * lerpK;
   cPitch += (usePitch - cPitch) * lerpK;
@@ -1196,6 +1289,30 @@ function loop(){
 
 st();
 loop();
+})();
+</script>
+<script>
+(function(){
+var L=[['உயர் PC',350,6],['43" TV (பொதுத் திரையிடல்)',80,4],['எடிட்டிங் மானிட்டர்',40,6],['ஸ்டுடியோ LED விளக்குகள்',200,4],['கேமரா + router + encoder',60,8],['CCTV/DVR',30,12],['ஆடியோ + Dubbing மைக்',30,4],['3D பிரிண்டர்',250,3],['T-shirt heat press',800,0.5],['சமையல் (induction)',1200,1]];
+var B=[['கேமரா + tripod/mast'],['உயர் PC'],['UPS / inverter'],['பேட்டரி (LiFePO4)'],['TV + மானிட்டர்'],['ஸ்டுடியோ விளக்குகள்'],['3D பிரிண்டர்'],['T-shirt heat press'],['சமையல் தொகுதி'],['மடிப்பு சோபா-பெட், டேபிள்'],['உள் மர/உலோக வேலை'],['CCTV அமைப்பு'],['RTO மாற்றம்/அனுமதிக் கட்டணம்']];
+var lh='<table style="width:100%;border-collapse:collapse">',i;
+for(i=0;i<L.length;i++) lh+='<tr><td><input type="checkbox" id="lc'+i+'" checked> '+L[i][0]+'</td><td><input id="lw'+i+'" type="number" value="'+L[i][1]+'" style="width:64px"> W</td><td><input id="lh'+i+'" type="number" step="0.5" value="'+L[i][2]+'" style="width:52px"> மணி</td></tr>';
+document.getElementById('loads').innerHTML=lh+'</table>';
+var bh='<table style="width:100%;border-collapse:collapse">';
+for(i=0;i<B.length;i++) bh+='<tr><td>'+B[i][0]+'</td><td>எண் <input id="bq'+i+'" type="number" value="1" style="width:44px"></td><td>₹ <input id="bp'+i+'" type="number" placeholder="விலை" style="width:90px"></td></tr>';
+document.getElementById('bom').innerHTML=bh+'</table>';
+function f(n){return Math.round(n).toLocaleString('en-IN');}
+function calc(){
+  var peak=0,wh=0,k;
+  for(k=0;k<L.length;k++){ if(!document.getElementById('lc'+k).checked)continue;
+    var w=+document.getElementById('lw'+k).value||0,h=+document.getElementById('lh'+k).value||0; peak+=w; wh+=w*h; }
+  var bat=wh/0.8/0.9, inv=peak*1.25;
+  document.getElementById('loadRes').innerHTML='தேர்ந்த கருவிகள் ஒரே நேரத்தில் இயங்கினால் அதிகபட்சம் <b>'+f(peak)+' W</b>; அதற்கு inverter குறைந்தது <b>'+f(inv)+' W</b> (25% கூடுதல்). நாள் மின் தேவை <b>'+f(wh)+' Wh</b>; பேட்டரி சுமார் <b>'+f(bat)+' Wh</b> (80% பயன்பாடு, inverter இழப்பு 10% கணக்கில்). கூரையில் solar பொருத்தினால் சிறிதளவே கிடைக்கும் என்பதால் shore power/generator பிரதானமாகவும் solar துணையாகவும் இருக்கும்.';
+  var t=0; for(k=0;k<B.length;k++) t+=(+document.getElementById('bq'+k).value||0)*(+document.getElementById('bp'+k).value||0);
+  document.getElementById('bomRes').textContent='மொத்தம்: ₹ '+f(t);
+}
+document.getElementById('plan').parentNode.addEventListener('input',calc);
+calc();
 })();
 </script>
 </body>
